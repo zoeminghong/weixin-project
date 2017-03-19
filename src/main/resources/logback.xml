@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_DIR" value="../logs/reward"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/reward.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--sql logger -->
+    <logger name="jdbc.sqlonly" level="ERROR"/>
+    <logger name="jdbc.sqltiming" level="ERROR"/>
+    <logger name="java.sql.Connection" level="ERROR" />
+    <logger name="java.sql.Statement" level="ERROR" />
+    <logger name="java.sql.PreparedStatement" level="ERROR" />
+    <logger name="java.sql.ResultSet" level="ERROR" />
+
+    <!--other logger -->
+    <logger name="com.trc.reward" level="DEBUG" />
+    <logger name="ch.qos.logback" level="INFO"/>
+    <logger name="org.quartz" level="INFO" />
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="com.apache.ibatis" level="ERROR"/>
+    <logger name="com.atomikos" level="INFO"/>
+    <logger name="org.apache.zookeeper" level="ERROR"/>
+    <logger name="com.alibaba.dubbo" level="INFO"/>
+
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file" />
+    </root>
+</configuration>
