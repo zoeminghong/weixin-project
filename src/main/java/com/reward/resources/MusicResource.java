@@ -68,8 +68,4 @@ public class MusicResource {
             return null;
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println(MusicResource.getInstance().getMuiscPath("夜空中最亮的星"));
-    }
 }
