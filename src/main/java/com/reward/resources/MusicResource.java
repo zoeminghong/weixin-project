@@ -32,13 +32,17 @@ public class MusicResource {
             JSONObject jsonObject = JSONObject.parseObject(result);
             if (200 == jsonObject.getInteger("code")) {
                 jsonObject = jsonObject.getJSONObject("result");
-                JSONArray jsonArray = jsonObject.getJSONArray("songs");
-                if (jsonArray != null && jsonArray.size() > 0) {
-                    jsonObject = jsonArray.getJSONObject(0);
-                    jsonObject = jsonObject.getJSONObject("album");
-                    if (jsonObject.containsKey("picUrl")) {
-                        result = jsonObject.getString("picUrl");
+                if (jsonObject.getInteger("songCount") > 0 && jsonObject.containsKey("songs")) {
+                    JSONArray jsonArray = jsonObject.getJSONArray("songs");
+                    if (jsonArray != null && jsonArray.size() > 0) {
+                        jsonObject = jsonArray.getJSONObject(0);
+                        jsonObject = jsonObject.getJSONObject("album");
+                        if (jsonObject.containsKey("picUrl")) {
+                            result = jsonObject.getString("picUrl");
+                        }
                     }
+                } else {
+                    result = "你一定是在挑逗我";
                 }
 
             }
